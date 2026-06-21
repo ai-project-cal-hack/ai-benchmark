@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-x752-qjv4-c4hc",
+  "post_patch_commit": "4c70e1025bcd9b7694b95dd552499bd83cd6141d",
+  "noisy_patch": false,
+  "curation_notes": "Pre-assigned as xss from CWE-79, but the patch fixes unsanitized file path input where the file extension is derived from an attacker-controlled URL, allowing executable files to be written to disk \u2014 reclassified to path-traversal. Patch commit identified from advisory reference dompdf/dompdf@4c70e10. Only 1 non-test source file changed (src/FontMetrics.php). Location derived from the patch diff: the fix replaces extension derivation from the remote URL with a switch on font type in the registerFont function. No sibling files contain the same vulnerability pattern; the only other PATHINFO_EXTENSION usage in src/Dompdf.php already validates against an allowlist.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
