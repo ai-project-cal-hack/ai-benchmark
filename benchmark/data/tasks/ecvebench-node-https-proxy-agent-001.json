@@ -1,0 +1,35 @@
+{
+  "task_id": "ecvebench-node-https-proxy-agent-001",
+  "ghsa_id": "GHSA-8g7p-74h8-hg48",
+  "codebase": {
+    "repo": "https://github.com/TooTallNate/node-https-proxy-agent",
+    "language": "javascript",
+    "ecosystem": "npm",
+    "commit": "c58d365dd153104d1147967a0a6b4e1dd1698e50"
+  },
+  "hints": {
+    "L0": null,
+    "L1": {
+      "area": "HTTP proxy connection and authentication handling"
+    },
+    "L2": {
+      "description": "A denial of service and information disclosure vulnerability exists where unsanitized proxy authentication options are passed directly to the Buffer constructor. When a numeric value is provided instead of a string, the Buffer constructor interprets it as a size parameter, allocating a large block of uninitialized heap memory that may contain sensitive data from previous allocations."
+    },
+    "L3": {
+      "area": "HTTPS proxy authentication header construction during connection tunnel setup",
+      "description": "A denial of service and information disclosure vulnerability exists where unsanitized proxy authentication credentials are passed directly to the Buffer constructor when building the Proxy-Authorization header for CONNECT tunnel requests. When a numeric value is provided instead of a string, the Buffer constructor interprets it as a size parameter, allocating a large block of uninitialized heap memory that may contain sensitive data from previous allocations."
+    }
+  },
+  "ground_truth": {
+    "vulnerable": true,
+    "vuln_class": "buffer-overflow",
+    "cvss": 9.1,
+    "reason": "The proxy authentication value (proxy.auth) is passed unsanitized to the Buffer constructor. If a numeric value is supplied, Buffer(number) allocates uninitialized heap memory, enabling information disclosure and denial of service via excessive memory allocation.",
+    "locations": [
+      {
+        "file": "index.js",
+        "function": "connect"
+      }
+    ]
+  }
+}
