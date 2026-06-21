@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-qv4q-mr5r-qprj",
+  "post_patch_commit": "85410e38410f670cbbc8c5b00d07b843caee88ce",
+  "noisy_patch": false,
+  "curation_notes": "Primary location derived from the patch diff: the fix adds a NULL check on the return value of xmlTextReaderExpand() in rb_xml_reader_attribute_hash (ext/nokogiri/xml_reader.c). Two other call sites of xmlTextReaderExpand in the same file already had NULL checks, so no sibling locations were added. Vulnerability class null-deref confirmed: CWE-252 (Unchecked Return Value) and CWE-476 (NULL Pointer Dereference) both align with the missing NULL check before dereferencing c_node->properties.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
