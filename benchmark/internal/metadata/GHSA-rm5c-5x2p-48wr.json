@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-rm5c-5x2p-48wr",
+  "post_patch_commit": "7622deed6128f5b5d935db988ffcc47e41e011f1",
+  "noisy_patch": false,
+  "curation_notes": "Primary locations derived from both advisory description (which explicitly names core/versioning/txVersionChecker.go:22 as root cause) and the patch diff. CheckTxVersion is where the nil dereference occurs; createTx is where the fix adds the first-layer nil RawData rejection. The third patched file (network/p2p/libp2p/netMessenger.go pubsubCallback) adds a defense-in-depth recover() but is not the vulnerability itself. Pre-assigned class null-deref confirmed: CWE-476 maps directly, the advisory explicitly describes a nil-pointer panic, and the patch adds nil guards.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
