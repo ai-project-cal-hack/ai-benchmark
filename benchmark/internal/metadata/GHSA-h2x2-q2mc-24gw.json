@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-h2x2-q2mc-24gw",
+  "post_patch_commit": "e4edcf225311ebe5bb10985ef10f726117c93e4c",
+  "noisy_patch": true,
+  "curation_notes": "Remediation landed across two PRs: #9830 (9a76ed80bb7ac2c4390efd6b0a044b93345d5a5b, main access-control fix) and #9835 (e4edcf225311ebe5bb10985ef10f726117c93e4c, SharedServer feature-parity columns and write guards). Pre-patch commit is the parent of the first PR merge. Post-patch commit is the second PR merge, after which the full fix is applied. The patch is noisy (20+ non-test source files changed), so locations were derived from both the advisory description and the most security-critical changes in the diff. The pre-assigned class auth-bypass (from CWE-284 Improper Access Control) is confirmed correct: the core vulnerability is that multiple endpoints performed Server.query.filter_by(id=sid).first() and ServerGroup.query.filter(ServerGroup.id == gid).first() without any user-identity scoping, and the DebuggerFunctionArguments table lacked a user_id column entirely. The fix centralises access control via a new server_access module, adds UserScopedMixin to models, and suppresses owner-only fields for non-owners.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
