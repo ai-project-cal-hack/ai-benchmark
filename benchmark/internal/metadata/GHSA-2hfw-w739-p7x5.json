@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-2hfw-w739-p7x5",
+  "post_patch_commit": "a9022772b2f1ce38929b5b81eccc670ac9d3ab23",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit a9022772b2f1ce38929b5b81eccc670ac9d3ab23 identified directly from the advisory references (viz-rs/nano-id PR #10). Only 1 non-test source file changed (src/lib.rs) plus Cargo.toml (version bump config). Location derived from the patch diff: the fix modifies the gen macro's MASK calculation from $len - 1 to ($len as usize).next_power_of_two() - 1, and adds rejection sampling for character selection. No sibling files \u2014 src/lib.rs is the only source file in the crate. Vulnerability class crypto-weakness confirmed from CWE-331 (Insufficient Entropy) and the patch clearly fixing a biased random sampling issue in the character selection bitmask.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
