@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-7fpj-wc8v-9cgc",
+  "post_patch_commit": "a5e723a28f110b7df8ffc4175cef9b061d3cc717",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit a5e723a identified from advisory references. Only 1 source file changed (TableLookupWizard.php). Location derived from patch diff: the fix adds intval casting in the prepareWhere() function for both checkbox (array_map intval) and radio ((int) cast) field types before SQL interpolation. No sibling files exist as the repo contains only a single PHP source file. Vulnerability class sql-injection confirmed from CWE-89 and the patch clearly adding integer sanitization to prevent SQL injection.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
