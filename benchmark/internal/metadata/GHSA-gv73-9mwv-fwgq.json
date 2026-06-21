@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-gv73-9mwv-fwgq",
+  "post_patch_commit": "04091d3e745c27590a5f1b7f581793e4159486b5",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit 04091d3e identified from advisory references (direct commit link). The fix adds a recursion depth limit to the skip_field function in src/encoding.rs, which previously recursed without bound when decoding nested StartGroup wire types. Three non-test source files changed: src/encoding.rs (core fix adding ctx parameter and limit_reached check), src/types.rs (updated 10 merge_field callers to pass DecodeContext), and prost-derive/src/lib.rs (updated generated merge code). The primary vulnerable location is skip_field in src/encoding.rs \u2014 the sole recursive function lacking a depth guard. No sibling files contain the same vulnerability pattern since skip_field is defined only once. Vulnerability class buffer-overflow confirmed: CWE-787 (Out-of-bounds Write) matches the stack overflow from unbounded recursion writing beyond allocated stack bounds.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
