@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-fwj8-62r8-8p8m",
+  "post_patch_commit": "ec65c0015df77bb0436fca894861963e38a2b989",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit ec65c0015 identified from git log of the v7.0.0 release tag by commit message 'incusd/storage/s3: Fix nil pointer dereference on truncated input'. Only 1 non-test source file changed (internal/server/storage/s3/transfer_manager.go). Location derived from the patch diff: the fix replaces the EOF-only check with a general error check in the UploadAllFiles function's tar iteration loop. No sibling files in the s3/ directory contain a similar tar iteration pattern. Vulnerability class null-deref confirmed from CWE-476 and the patch clearly adding a nil/error guard before hdr.Name access.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}

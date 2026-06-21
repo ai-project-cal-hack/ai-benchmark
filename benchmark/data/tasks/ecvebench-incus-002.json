@@ -1,0 +1,35 @@
+{
+  "task_id": "ecvebench-incus-002",
+  "ghsa_id": "GHSA-fwj8-62r8-8p8m",
+  "codebase": {
+    "repo": "https://github.com/lxc/incus",
+    "language": "go",
+    "ecosystem": "go",
+    "commit": "afcf707e0e9dfcfcf0f644069801cfeb439565a8"
+  },
+  "hints": {
+    "L0": null,
+    "L1": {
+      "area": "Storage backend data transfer and import processing"
+    },
+    "L2": {
+      "description": "A nil pointer dereference vulnerability exists in the storage backup import pipeline where a tar archive iteration loop only checks for end-of-archive errors. When a truncated or corrupted archive produces a non-EOF read error, the tar header variable is nil but is immediately dereferenced to access its name field, causing a daemon panic and denial of service."
+    },
+    "L3": {
+      "area": "S3 storage bucket transfer and file upload logic",
+      "description": "A nil pointer dereference vulnerability exists in the S3 bucket backup restore pipeline where a tar archive iteration loop only checks for end-of-archive (EOF) errors. When a truncated or corrupted backup archive produces a non-EOF read error during bucket import, the tar header variable is nil but is immediately dereferenced to access its name field, causing a daemon panic and denial of service."
+    }
+  },
+  "ground_truth": {
+    "vulnerable": true,
+    "vuln_class": "null-deref",
+    "cvss": 6.5,
+    "reason": "TransferManager.UploadAllFiles only checks for io.EOF from tr.Next(), so a non-EOF error (e.g. from a truncated archive) leaves hdr as nil, and the subsequent hdr.Name access causes a nil pointer dereference panic.",
+    "locations": [
+      {
+        "file": "internal/server/storage/s3/transfer_manager.go",
+        "function": "UploadAllFiles"
+      }
+    ]
+  }
+}
