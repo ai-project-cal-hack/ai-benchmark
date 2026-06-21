@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-8g7p-74h8-hg48",
+  "post_patch_commit": "1c24219df87524e6ed973127e81f30801d658f07",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit 1c24219d found directly from the advisory references. Only 1 non-test source file changed (index.js). The fix replaces `new Buffer(proxy.auth)` with `Buffer.from(proxy.auth)` inside the `connect` callback function (HttpsProxyAgent.prototype.callback). No sibling files exist \u2014 index.js is the sole source file in this package. Vulnerability class buffer-overflow retained from pre-assigned CWE-125 (Out-of-bounds Read) mapping; the Node.js Buffer(number) constructor allocates uninitialized heap memory, enabling out-of-bounds reads of sensitive data.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
