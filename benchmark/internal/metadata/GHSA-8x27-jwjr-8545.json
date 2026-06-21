@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-8x27-jwjr-8545",
+  "post_patch_commit": "11107d6d6e5160b62e05dff8a3a2678cf0e3a426",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit 11107d6 identified from the advisory references. Only 1 source file changed (drivers/adodb-postgres64.inc.php). The fix adds pg_escape_identifier() to sanitize the $tablename and $fieldname parameters before interpolating them into a SQL SELECT query in the pg_insert_id() method. Sibling PostgreSQL drivers (postgres7, postgres8, postgres9) inherit from postgres64 via class extension and do not override pg_insert_id(), so no sibling locations added. Vulnerability class sql-injection confirmed from CWE-89 and the patch clearly adding SQL identifier escaping.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
