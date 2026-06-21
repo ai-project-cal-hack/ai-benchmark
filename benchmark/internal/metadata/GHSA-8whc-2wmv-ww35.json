@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-8whc-2wmv-ww35",
+  "post_patch_commit": "8be71e53ccbe9b84b30870db386fb4d2b11e1c16",
+  "noisy_patch": false,
+  "curation_notes": "Primary location derived from the patch diff which modifies only plugin/YPTSocket/MessageSQLiteV2.php::onOpen, adding URL validation for selfURI and htmlspecialchars sanitization for page_title. Sibling files MessageSQLite.php and Message.php in the same directory contain identical onOpen handlers with the same unsanitized webSocketSelfURI and page_title persistence pattern (utf8_encode instead of htmlspecialchars). Pre-assigned vulnerability class xss confirmed: CWE-79 matches the stored DOM XSS described in the advisory and evident in the patch diff.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
