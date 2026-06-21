@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-6c25-cxcc-pmc4",
+  "post_patch_commit": "0eee7eadc7267641fd53ceabb9e956a112b71c29",
+  "noisy_patch": true,
+  "curation_notes": "Pre-assigned as sql-injection from CWE-89, but the patch adds an ALLOWED_CLASS_SET restriction to the Aviator expression engine to prevent arbitrary Java class access during expression evaluation \u2014 reclassified to command-injection. 9 non-test source files changed (noisy), but 8 of the 9 are purely interface signature updates to add the allowClassSet parameter; only AviatorEngine.java contains the substantive fix. Location derived from the patch diff: the eval() method in AviatorEngine previously called engine.execute() without any class access restriction. Sibling expression engines (Jexl, JfireEL, Mvel, QLExpress, Rhino, SpEL) update signatures but do not implement class restrictions and are not named by the CVE, so they are excluded from locations.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
