@@ -1,0 +1,35 @@
+{
+  "task_id": "ecvebench-nokogiri-001",
+  "ghsa_id": "GHSA-qv4q-mr5r-qprj",
+  "codebase": {
+    "repo": "https://github.com/sparklemotion/nokogiri",
+    "language": "ruby",
+    "ecosystem": "rubygems",
+    "commit": "3b9c736bee91f95514da309eef28b06c0c29ce3a"
+  },
+  "hints": {
+    "L0": null,
+    "L1": {
+      "area": "XML document parsing and streaming reader components"
+    },
+    "L2": {
+      "description": "A null pointer dereference vulnerability exists where the return value of an XML node expansion call is not checked for errors before being dereferenced. When parsing malformed or invalid markup, this unchecked return value can lead to a null pointer exception, resulting in a denial of service."
+    },
+    "L3": {
+      "area": "XML streaming reader attribute retrieval logic",
+      "description": "A null pointer dereference vulnerability exists where the return value of an XML node expansion call is not checked for errors before accessing node properties during attribute hash construction. When parsing malformed or invalid XML markup through the streaming reader interface, this can lead to a null pointer exception and denial of service."
+    }
+  },
+  "ground_truth": {
+    "vulnerable": true,
+    "vuln_class": "null-deref",
+    "cvss": 7.5,
+    "reason": "The xmlTextReaderExpand return value is not checked for NULL in the attribute_hash function, causing a null pointer dereference when parsing invalid markup.",
+    "locations": [
+      {
+        "file": "ext/nokogiri/xml_reader.c",
+        "function": "rb_xml_reader_attribute_hash"
+      }
+    ]
+  }
+}
