@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-9wcp-79g5-5c3c",
+  "post_patch_commit": "598cbce696754f1f8e9d681d7bb2b33eaedf0dfe",
+  "noisy_patch": true,
+  "curation_notes": "Patch commit is the merge commit of PR #41681 into the release branch. The vulnerability is a TOCTOU race condition in the signupAndLoginSuper() method in UserSignupCEImpl.java, where a non-atomic check (isUsersEmpty()) followed by user creation allows concurrent requests to bypass the single-admin restriction. The fix adds an atomic sentinel document claim via MongoDB findAndModify with upsert. The patch touches 6 non-test source files (1 new migration, 4 new method additions across interfaces/impls, 1 core fix in UserSignupCEImpl.java), making it noisy. The primary location is UserSignupCEImpl.java::signupAndLoginSuper, as that is where the vulnerable non-atomic check-then-act pattern exists. The pre-assigned vulnerability class race-condition (from CWE-367) is correct.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
