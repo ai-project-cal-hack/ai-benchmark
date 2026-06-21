@@ -1,0 +1,43 @@
+{
+  "task_id": "ecvebench-gobgp-002",
+  "ghsa_id": "GHSA-7235-89m6-f4px",
+  "codebase": {
+    "repo": "https://github.com/osrg/gobgp",
+    "language": "go",
+    "ecosystem": "go",
+    "commit": "2814e72b0ecf54ead9364deb5b21dcfc92bc0ead"
+  },
+  "hints": {
+    "L0": null,
+    "L1": {
+      "area": "BGP session state management and protocol message processing"
+    },
+    "L2": {
+      "description": "A nil pointer dereference vulnerability exists where a malformed BGP UPDATE message containing an unrecognized path attribute marked as well-known triggers a daemon crash. When message validation identifies the error, a variable scoping issue causes the validation error to be lost, and subsequent error handling code dereferences a nil value when attempting to log and process the session reset, resulting in a panic and complete denial of service."
+    },
+    "L3": {
+      "area": "BGP Finite State Machine message handling and session state transition logic",
+      "description": "A nil pointer dereference vulnerability exists in the BGP Finite State Machine message handling loop where a malformed UPDATE message containing an unrecognized path attribute with the well-known transitive flag triggers a daemon crash. During UPDATE validation, a variable shadowing bug causes the validation error to be captured in a block-scoped variable rather than the outer variable used for subsequent error handling. When the error handling path executes for a session reset, it dereferences the outer error variable which remains nil, causing a panic and complete denial of service."
+    }
+  },
+  "ground_truth": {
+    "vulnerable": true,
+    "vuln_class": "null-deref",
+    "cvss": 7.5,
+    "reason": "The recvMessageloop function uses a shadowed error variable after ValidateUpdateMsg, so when a malformed BGP UPDATE with an unrecognized well-known path attribute triggers a session reset, the code dereferences the nil outer error variable, causing a panic.",
+    "locations": [
+      {
+        "file": "pkg/server/fsm.go",
+        "function": "recvMessageloop"
+      },
+      {
+        "file": "pkg/server/fsm.go",
+        "function": "established"
+      },
+      {
+        "file": "pkg/server/server.go",
+        "function": "matchLongestDynamicNeighborPrefix"
+      }
+    ]
+  }
+}
