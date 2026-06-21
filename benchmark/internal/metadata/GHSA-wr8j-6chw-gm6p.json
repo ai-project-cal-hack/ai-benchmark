@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-wr8j-6chw-gm6p",
+  "post_patch_commit": "df535f5524314620715e842baf9723efbeb481a7",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit df535f5 (merge of PR #62) identified from the advisory references. Only 1 source file changed: internal/sbi/processor/smpolicy.go. The fix moves `smData = response.SmPolicyData` from before the nil check on `response` to after the nil check, preventing a nil pointer dereference when the downstream UDR lookup returns an error with a nil response. Location derived from the patch diff and confirmed by the advisory description and stack trace (smpolicy.go:82, function HandleCreateSmPolicyRequest). Sibling processor files (ampolicy.go, bdtpolicy.go, policyauthorization.go) were checked but do not contain the same vulnerability pattern. Vulnerability class null-deref confirmed from CWE-476 and the patch clearly fixing a nil pointer dereference.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
