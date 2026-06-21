@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-c3qp-2ggw-xjg7",
+  "post_patch_commit": "fcd0c5920588702df5b874f432b1042abd77a50b",
+  "noisy_patch": true,
+  "curation_notes": "Patch commit fcd0c592 is the merge of PR #511 tagged as v2.8.0. The PR modifies 70 files across many admin components (noisy), but the GHSA specifically describes two defects in Settings/Team/Index (missing mount authorization) and Settings/Team/RolePermission (write actions gated on read-only view_users permission). Locations derived from the advisory description and confirmed by the patch diff. No sibling files in Pages/Settings/Team/ share the same vulnerability pattern \u2014 only Index.php and RolePermission.php exist in that directory. The Components/Settings/Team/ siblings (Permissions.php, UsersRole.php) already had authorize() calls; their changes were null-guard hardening, not auth-bypass fixes. Vulnerability class auth-bypass confirmed from CWE-269 (Improper Privilege Management) and CWE-285 (Improper Authorization) \u2014 the patch adds missing authorization gates and corrects permission levels.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
