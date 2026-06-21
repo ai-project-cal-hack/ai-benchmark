@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-r23q-823p-vmf7",
+  "post_patch_commit": "361b6f620adf98385c6721e384fb5ef9a30bb05e",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit 361b6f6 modifies only one non-test source file (mlflow/models/container/__init__.py) and one new test file. The vulnerability is in _install_model_dependencies_to_env() where dependency strings from python_env.yaml are joined and interpolated into a bash -c command via f-string. The fix replaces shell command interpolation with a list-based Popen call using shlex.split() for each dependency. Pre-assigned class command-injection (CWE-77) is correct. No sibling files share the same vulnerability pattern.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
