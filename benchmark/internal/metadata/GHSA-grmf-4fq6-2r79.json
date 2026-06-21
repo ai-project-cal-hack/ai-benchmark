@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-grmf-4fq6-2r79",
+  "post_patch_commit": "b1559f4c9ce2b304d8d27ffdc7128b6795ca82e5",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit b1559f4 identified from advisory references (aubio/aubio@b1559f4). Only 1 source file changed: src/tempo/tempo.c (+4/-3). The fix increases the specdesc_func buffer from 20 bytes to PATH_MAX and replaces strcpy with strncpy plus null termination. Location derived directly from the patch diff: the vulnerable code is in new_aubio_tempo where tempo_mode is copied via strcpy into a 20-byte stack buffer. No sibling files (onset.c, pitch.c) contain the same vulnerability pattern. Vulnerability class buffer-overflow confirmed from CWE-119 and the patch clearly fixing an unbounded string copy into a fixed-size buffer.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
