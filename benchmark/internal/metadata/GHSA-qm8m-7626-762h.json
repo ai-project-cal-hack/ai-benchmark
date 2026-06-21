@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-qm8m-7626-762h",
+  "post_patch_commit": "d26b2a694de30f95e46ea54ea72cc54f0d38e548",
+  "noisy_patch": true,
+  "curation_notes": "Patch commit d26b2a6 identified from advisory reference link. The commit bundles multiple security fixes across 7 files (6 non-test source files), making it a noisy patch; only htdocs/admin/menus/edit.php is relevant to the SQL injection. The fix replaces raw $_POST['menuId'] with GETPOST('menuId','int') which sanitizes the input as an integer. The unsanitized menuId was passed to Menubase::fetch() which directly interpolates it into a SQL WHERE clause. Sibling files index.php and other.php in the same directory already used GETPOST() with type filtering and are not vulnerable. Vulnerability class sql-injection confirmed from CWE-89, the advisory description, and the patch diff.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}

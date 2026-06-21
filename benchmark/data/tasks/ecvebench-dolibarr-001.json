@@ -1,0 +1,35 @@
+{
+  "task_id": "ecvebench-dolibarr-001",
+  "ghsa_id": "GHSA-qm8m-7626-762h",
+  "codebase": {
+    "repo": "https://github.com/Dolibarr/dolibarr",
+    "language": "php",
+    "ecosystem": "composer",
+    "commit": "9cc344f8cc57a15e0d5beb40b022f5104897d193"
+  },
+  "hints": {
+    "L0": null,
+    "L1": {
+      "area": "Administrative backend management and configuration interface"
+    },
+    "L2": {
+      "description": "A SQL injection vulnerability exists where an attacker-controlled parameter from a POST request is directly interpolated into a database query without sanitization or type validation, allowing remote attackers to execute arbitrary SQL commands."
+    },
+    "L3": {
+      "area": "Admin panel menu entry editing and configuration interface",
+      "description": "A SQL injection vulnerability exists where a menu entry identifier parameter submitted via a POST request is passed directly to a database record retrieval method that interpolates it into a SQL WHERE clause without sanitization or type casting, allowing remote attackers to execute arbitrary SQL commands."
+    }
+  },
+  "ground_truth": {
+    "vulnerable": true,
+    "vuln_class": "sql-injection",
+    "cvss": 9.8,
+    "reason": "The menuId POST parameter in the admin menu editing interface is passed unsanitized to Menubase::fetch(), which directly interpolates it into a SQL WHERE clause, enabling arbitrary SQL injection.",
+    "locations": [
+      {
+        "file": "htdocs/admin/menus/edit.php",
+        "function": null
+      }
+    ]
+  }
+}
