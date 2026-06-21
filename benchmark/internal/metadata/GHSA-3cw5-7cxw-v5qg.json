@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-3cw5-7cxw-v5qg",
+  "post_patch_commit": "7558f07f693b2ac3266089f21051e6b78c6a0c85",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit 7558f07 changes a single line in src/Image/Cache.php within the resolve_url function: the case-sensitive comparison `$name === \"image\"` is replaced with `strtolower($name) === \"image\"`. The advisory explicitly names the file and function. Only 1 source file was changed (not noisy). The pre-assigned vuln_class auth-bypass is retained because the vulnerability allows circumventing the URI protocol allowlist (an authorization control) via case-sensitive tag name comparison, consistent with CWE-551 (Incorrect Behavior Order: Authorization Before Parsing and Canonicalization) and CWE-863 (Incorrect Authorization). No sibling files share this exact vulnerability pattern \u2014 the SVG tag name check is unique to this location in the image caching code.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
