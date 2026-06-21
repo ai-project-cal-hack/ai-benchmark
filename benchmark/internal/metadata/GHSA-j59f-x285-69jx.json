@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-j59f-x285-69jx",
+  "post_patch_commit": "72a47f3fab4dffbd227f8d92c5f69dca93b610cb",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit 72a47f3 identified from advisory reference free5gc/nef@72a47f3 (merge of PR #22). Only 1 non-test source file changed: internal/sbi/processor/pfd.go (+1/-1). The fix replaces problemDetails.Cause (nil in the errPfdData branch) with problemDetailsErr.Detail (the locally constructed struct). Location derived from the patch diff: the vulnerability is in PatchIndividualApplicationPFDManagement at line 622. Checked sibling files (pfdf.go, ti.go, callback.go, oam.go) in the same directory \u2014 all use locally constructed non-nil problemDetails variables in their error branches, so no sibling vulnerabilities exist. Vulnerability class null-deref confirmed: CWE-476 matches the nil pointer dereference on problemDetails.Cause.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
