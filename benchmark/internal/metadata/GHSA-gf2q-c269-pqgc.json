@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-gf2q-c269-pqgc",
+  "post_patch_commit": "457fae0736c3ec862539b9dbf7f477e6c08fb6c6",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit 457fae0 identified from PR #897 referenced in the v10.26.0 release notes ('fix(security): block Object.prototype filter/tag lookups (RCE)'). Parent commit 3616a74 is the pre-patch commit. Only 1 non-test source file changed (src/liquid.ts): the fix replaces plain {} initializers for filters and tags with Object.create(null) to eliminate Object.prototype inheritance. Location derived from the patch diff \u2014 the vulnerability is in the class property declarations of the Liquid class. No sibling files share this pattern since the Liquid class is defined solely in src/liquid.ts. Vulnerability class kept as command-injection (pre-assigned from CWE-94): although the root cause is prototype chain traversal enabling code injection, the practical exploitation achieves arbitrary OS command execution via child_process.execSync, and command-injection is the closest available class.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
