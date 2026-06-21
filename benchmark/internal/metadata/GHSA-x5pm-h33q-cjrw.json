@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-x5pm-h33q-cjrw",
+  "post_patch_commit": "a5a6549e5b6609c8feeab992731854ebffddcd1c",
+  "noisy_patch": false,
+  "curation_notes": "Primary location derived from patch diff. The vulnerability is in the get_conn method which unconditionally disables certificate validation (tlsAllowInvalidCertificates=True or ssl_cert_reqs=CERT_NONE) when SSL is enabled. Only one non-test source file was modified (mongo.py); CHANGELOG.rst is documentation. No sibling files in the hooks directory contain the same vulnerability pattern. The pre-assigned class crypto-weakness (from CWE-295 Improper Certificate Validation) is correct as the vulnerability is misused TLS/SSL configuration.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
