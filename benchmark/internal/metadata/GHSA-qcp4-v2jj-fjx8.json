@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-qcp4-v2jj-fjx8",
+  "post_patch_commit": "6e3b98fe55f1bdb61a97a8a8e3df709c71c82264",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit 6e3b98f identified from git log between v3.10.5 and v3.11.0 tags as 'fix(GHSA-qcp4-v2jj-fjx8): validate handler trap target against registered proxy target'. Only 1 non-test source file changed (lib/bridge.js). Location derived from advisory description which explicitly names BaseHandler.getPrototypeOf as the reachable exploit entry point; the patch adds validateHandlerTarget() calls to all proxy trap methods. No sibling files contain the same vulnerability pattern since all handler classes are defined in bridge.js. Pre-assigned as command-injection from CWE-94, but the patch adds authorization checks (handler-target validation via a WeakMap) that enforce an isolation boundary \u2014 reclassified to auth-bypass since the root cause is a missing access-control invariant on the sandbox boundary, not unsanitized input passed to shell commands.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
