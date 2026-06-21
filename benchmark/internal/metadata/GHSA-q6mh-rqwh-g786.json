@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-q6mh-rqwh-g786",
+  "post_patch_commit": "18b58775866776ed400c403dd0ccad68c1fa4802",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit 18b5877 identified from the advisory references. Only 1 non-test source file changed (backend/config/config.go) adding a validate:\"gte=32\" struct tag to the JWTSecret field. Docs file also updated. Locations derived from the patch diff and advisory description: config.go defines the AppConfig struct where the JWTSecret field lacked length validation, and utils.go contains the Base64Decoded.UnmarshalText function that decodes the secret without checking its length. No sibling files contain the same vulnerability pattern. Vulnerability class crypto-weakness confirmed from CWE-326 (Inadequate Encryption Strength) and the patch enforcing a minimum 32-byte key length for HS256 JWT signing.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
