@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-7235-89m6-f4px",
+  "post_patch_commit": "215aee08db47e55f4f8a7741e516951f76a959b4",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit 215aee0 identified from v4.4.0 release changelog ('fix: prevent nil dereference on BGP UPDATE validation and fix variable shadowing'). 2 non-test source files changed (pkg/server/fsm.go, pkg/server/server.go). Primary location derived from advisory description: recvMessageloop in fsm.go uses a shadowed err variable after ValidateUpdateMsg, causing nil dereference on err.Error() during session reset. Two additional fixes in the same commit: (1) established() in fsm.go shadows outer m with ':=' losing the deconfigured notification, and (2) matchLongestDynamicNeighborPrefix in server.go discards net.ParseCIDR error, causing nil dereference on Contains. All three are null-deref fixes. Vulnerability class null-deref confirmed from CWE-476 and all three patch changes adding nil pointer guards or correcting variable scoping to prevent nil access.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
