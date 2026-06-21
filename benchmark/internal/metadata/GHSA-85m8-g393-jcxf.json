@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-85m8-g393-jcxf",
+  "post_patch_commit": "270d90ecacfc1d7f239c4d520b1c7aed2e59f2c5",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit 270d90e identified from git log as 'Patch Stored XSS in Backup module by escaping filenames'. Only 1 non-test source file changed (modules/Backup/Controllers/Backup.php). The fix adds esc() calls to HTML-encode the backup filename in the index() method's DataTables AJAX response and in the delete() method's success/error response messages. Locations derived directly from the patch diff. No sibling controllers exist in the Backup module. Vulnerability class xss confirmed from CWE-79 and the patch clearly adding output encoding via esc().",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
