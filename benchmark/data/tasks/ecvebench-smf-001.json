@@ -1,0 +1,35 @@
+{
+  "task_id": "ecvebench-smf-001",
+  "ghsa_id": "GHSA-3258-qmv8-frp3",
+  "codebase": {
+    "repo": "https://github.com/free5gc/smf",
+    "language": "go",
+    "ecosystem": "go",
+    "commit": "8385c00a0434bfc40c0fd331130cdd65c7495a98"
+  },
+  "hints": {
+    "L0": null,
+    "L1": {
+      "area": "SBI service endpoint registration and HTTP routing middleware"
+    },
+    "L2": {
+      "description": "An authentication bypass vulnerability exists where a management API route group in a 5G core network function is mounted without OAuth2/bearer-token authorization middleware. While sibling API route groups on the same service instance are properly protected with authorization checks that validate bearer tokens, this specific management route group was not configured with any inbound authentication middleware. An unauthenticated network attacker who can reach the service's SBI interface can directly access the unprotected endpoints to read, modify, and delete network topology data without presenting any credentials."
+    },
+    "L3": {
+      "area": "SMF SBI route group registration and per-group authorization middleware wiring for the UPI management interface",
+      "description": "An authentication bypass vulnerability exists where the UPI (User Plane Information) management route group in the SMF 5G network function is mounted without OAuth2/bearer-token authorization middleware. While sibling route groups on the same SMF instance (such as the OAM and PDU Session route groups) are properly protected with authorization checks, the UPI route group was not configured with any inbound authentication middleware. An unauthenticated network attacker who can reach the SMF's SBI interface can directly access UPI endpoints to read, inject, and delete UP-node and link topology entries without presenting any credentials."
+    }
+  },
+  "ground_truth": {
+    "vulnerable": true,
+    "vuln_class": "auth-bypass",
+    "cvss": 10.0,
+    "reason": "The SMF newRouter function mounts the UPI management route group without OAuth2/bearer-token authorization middleware, allowing unauthenticated network attackers to read, modify, and delete UP-node and link topology data via the SBI interface.",
+    "locations": [
+      {
+        "file": "internal/sbi/server.go",
+        "function": "newRouter"
+      }
+    ]
+  }
+}

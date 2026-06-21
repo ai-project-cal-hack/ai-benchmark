@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-3258-qmv8-frp3",
+  "post_patch_commit": "e23ce97565f285eb99eed153743c62bf4c767c6e",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit e23ce97 identified from advisory reference free5gc/smf@e23ce97 (merge of PR #197). Only 1 non-test source file changed (internal/sbi/server.go), adding 4 lines of authorization middleware to the UPI route group. Location derived from both the advisory description (which explicitly names the file and line) and the patch diff. The fix adds a RouterAuthorizationCheck middleware to the upiGroup in the newRouter function, mirroring the existing auth middleware on the OAM, PDUSession, and EventExposure route groups. No sibling files share this vulnerability pattern since route group registration is centralized in server.go. Vulnerability class auth-bypass confirmed from CWE-306/CWE-862 and the patch clearly adding missing authentication middleware.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
