@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-c79v-2rjq-965m",
+  "post_patch_commit": "b3e3959d14814f42ee2197c504c322bcbe12347d",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit b3e3959d14814f42ee2197c504c322bcbe12347d identified from advisory reference (chakra-core/ChakraCore@b3e3959). Only 1 non-test source file changed (lib/Runtime/ByteCode/ByteCodeEmitter.cpp). Location derived from patch diff: the fix adds conditional checks in ByteCodeGenerator::StartEmitFunction to avoid unconditionally instantiating the param scope when body and param scopes are not merged. No sibling files contain the same vulnerability pattern since the scope instantiation logic in StartEmitFunction is unique to ByteCodeEmitter.cpp. Vulnerability class buffer-overflow confirmed from CWE-119 (Improper Restriction of Operations within the Bounds of a Memory Buffer) and the advisory describing memory corruption leading to privilege escalation.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
