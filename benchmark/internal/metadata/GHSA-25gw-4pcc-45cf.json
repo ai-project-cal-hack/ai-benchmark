@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-25gw-4pcc-45cf",
+  "post_patch_commit": "f91125b26a6ca2b7a1195f1842360bed03629839",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit f91125b26a6ca identified from the advisory references. Only 1 non-test source file changed (batik-dom/src/main/java/org/apache/batik/dom/AbstractDocument.java). The fix adds a type check (DOMImplementation.class.isAssignableFrom(c)) before calling newInstance() in the readObject deserialization method. Location derived from the patch diff: the vulnerable code is in the readObject method which reads a class name from the serialization stream and instantiates it without type validation. Checked sibling files (GenericDocument, AbstractStylableDocument, ExtensibleDOMImplementation) \u2014 none contain the same readObject deserialization pattern. Vulnerability class insecure-deserialization confirmed from CWE-502 and the advisory title 'Deserialization of Untrusted Data'.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
