@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-rjh8-p66p-jrh5",
+  "post_patch_commit": "2ef3628dac35aeba0a97d5fb3a57746b4e1d62b3",
+  "noisy_patch": false,
+  "curation_notes": "Patch modifies only src/functions.rs (1 file). The fix replaces the unsound get_aux/set_aux API (which returned raw references and used TypeId-based casting) with an Arc-based API that provides atomic reference counting and Send+Sync bounds, eliminating the data race on concurrent access to SQLite auxiliary data. Locations derived directly from the patch diff: get_aux returned &T without synchronization, and set_aux stored data without thread-safe wrapping. Pre-assigned class race-condition confirmed \u2014 CWE-362 and the advisory description ('Auxdata API data race') both align with the patch adding Arc synchronization.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
