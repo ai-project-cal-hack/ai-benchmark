@@ -1,0 +1,39 @@
+{
+  "task_id": "ecvebench-incus-001",
+  "ghsa_id": "GHSA-x5r6-jr56-89pv",
+  "codebase": {
+    "repo": "https://github.com/lxc/incus",
+    "language": "go",
+    "ecosystem": "go",
+    "commit": "da44e2d05550e8c9ff1fe835c0f95ee0819c2e0e"
+  },
+  "hints": {
+    "L0": null,
+    "L1": {
+      "area": "Instance backup restore and import processing"
+    },
+    "L2": {
+      "description": "A nil pointer dereference vulnerability exists where a malformed YAML configuration file within a backup archive omits a required section. When the backup is restored or imported, downstream consumers dereference the missing section's fields without first checking for nil, causing a daemon crash and denial of service."
+    },
+    "L3": {
+      "area": "Instance backup YAML configuration parsing and the restore and import flow",
+      "description": "A nil pointer dereference vulnerability exists in the instance backup restore flow where a crafted backup archive contains a valid inline index configuration but a malformed legacy YAML file that omits the container section. When the daemon reparses this legacy file during restore or import, the container configuration struct is nil, and subsequent unconditional accesses to its device maps and name field cause a fatal nil pointer dereference, crashing the daemon."
+    }
+  },
+  "ground_truth": {
+    "vulnerable": true,
+    "vuln_class": "null-deref",
+    "cvss": 6.5,
+    "reason": "UpdateInstanceConfig and internalImportFromBackup dereference the Container field of a parsed backup YAML configuration without checking for nil, causing a nil pointer dereference when a crafted backup archive contains a legacy YAML file that omits the container section.",
+    "locations": [
+      {
+        "file": "internal/server/backup/backup_config_utils.go",
+        "function": "UpdateInstanceConfig"
+      },
+      {
+        "file": "cmd/incusd/api_internal.go",
+        "function": "internalImportFromBackup"
+      }
+    ]
+  }
+}
