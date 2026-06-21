@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-47x8-96vw-5wg6",
+  "post_patch_commit": "fca270df73b64a88e2f9ce71ac17663b6eaf814e",
+  "noisy_patch": false,
+  "curation_notes": "Pre-assigned as command-injection from CWE-94, but the patch fixes a sandbox boundary bypass \u2014 the vm2 sandbox is an authorization boundary and the vulnerability allows circumventing it to gain host-context code execution. Reclassified to auth-bypass. Two fix commits for this GHSA: c1db602 (strip dangerous cross-realm symbols at bridge boundary) and 261da20 (structural identity collapse for host built-in intrinsics), both modifying only lib/bridge.js. Pre-patch commit is the parent of the first fix commit (6e3b98f). Post-patch commit is the v3.11.0 release tag (fca270d). Location derived from the patch diff: all changes are within the createBridge function in lib/bridge.js. No sibling files contain the same vulnerability pattern since the bridge proxy logic is solely in bridge.js.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
