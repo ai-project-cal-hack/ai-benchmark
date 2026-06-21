@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-9p3r-hh9g-5cmg",
+  "post_patch_commit": "121870a08583033ed6a0ed73d9ffea32991252bb",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit 121870a identified from advisory references. Two non-test source files changed: remote-fs-bridge.ts (readFile method refactored to use runMutation) and fs-bridge-mutation-helper.ts (new read_file function added using fd-based operations). The vulnerability is in readFile which performed resolveCanonicalPath and assertNoHardlinkedFile as separate shell commands before reading with cat, creating a TOCTOU race window. The fix routes reads through the mutation helper which uses os.open with dir_fd for atomic open-and-read. No sibling files share this pattern: the local fs-bridge.ts already uses fd-based readFileSync, and other methods in remote-fs-bridge.ts already used runMutation. Vulnerability class race-condition confirmed from CWE-367 (TOCTOU) and the patch clearly replacing check-then-use with atomic fd-based operations.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
