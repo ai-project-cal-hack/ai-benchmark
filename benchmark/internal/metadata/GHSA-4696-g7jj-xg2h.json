@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-4696-g7jj-xg2h",
+  "post_patch_commit": "3e0fc713c491276af6739225b06be1fcef122b31",
+  "noisy_patch": false,
+  "curation_notes": "The vulnerability is in the closed-source gl-native library bundled as a binary dependency. The patch commit only bumps the gl-native version from 10.6.0 to 10.6.1 in buildSrc/src/main/kotlin/Project.kt. No application source code in this repo was modified. The actual integer overflow occurs in the native Image constructor (visible in the archived open-source mapbox-gl-native repo at include/mbgl/util/image.hpp) where bytes() computes channels * width * height without overflow checking. Location points to the build config file that pins the vulnerable dependency version, as that is the only non-doc file changed by the patch.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
