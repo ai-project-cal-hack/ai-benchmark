@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-gv46-4xfq-jv58",
+  "post_patch_commit": "0af76f5f0e93540efbdf054895216c398692afcd",
+  "noisy_patch": true,
+  "curation_notes": "Four sequential commits fix this vulnerability (318379cdba -> a7af646fdf -> c15946274e -> 0af76f5f0e). The pre-patch commit is the parent of the first fix commit. The core vulnerability is in src/gateway/server-methods/nodes.ts where the node.invoke handler forwards user-controlled params directly to nodeRegistry.invoke() without stripping internal approval control fields. The patch adds centralized sanitization (node-invoke-sanitize.ts, node-invoke-system-run-approval.ts), binds approval IDs to device identity, and allowlists system.run params. 9 non-test source files changed across the 4 commits, so noisy_patch is true. No sibling files share the same vulnerability pattern -- the node.invoke handler is the only gateway method that forwards params to node hosts for system.run execution. Vulnerability class auth-bypass confirmed: CWE-863 (Incorrect Authorization) and CWE-441 (Confused Deputy) match the pattern of injecting control fields to bypass the approval workflow.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}

@@ -1,0 +1,35 @@
+{
+  "task_id": "ecvebench-openclaw-001",
+  "ghsa_id": "GHSA-gv46-4xfq-jv58",
+  "codebase": {
+    "repo": "https://github.com/openclaw/openclaw",
+    "language": "typescript",
+    "ecosystem": "npm",
+    "commit": "233483d2b913038592c863785e1bc815336a5b69"
+  },
+  "hints": {
+    "L0": null,
+    "L1": {
+      "area": "Gateway request handling and node command invocation logic"
+    },
+    "L2": {
+      "description": "An authorization bypass vulnerability exists in the gateway's node command invocation path where user-controlled parameters are forwarded to node hosts without sanitizing internal control fields. An authenticated client can inject approval status flags directly into the parameters of a command execution request, causing the receiving node host to skip its exec approval workflow and enabling arbitrary command execution on connected hosts without proper authorization."
+    },
+    "L3": {
+      "area": "Gateway node invocation request handler and system command execution parameter forwarding",
+      "description": "An authorization bypass vulnerability exists in the gateway's node invocation request handler where user-controlled parameters for the system command execution feature are forwarded to node hosts without sanitizing internal approval control fields. An authenticated gateway client with basic write permissions can inject approval-override flags into the invocation parameters, causing the node host runner to skip its exec approval gating and enabling arbitrary command execution on developer workstations, CI runners, and servers running the node host without going through the approval workflow."
+    }
+  },
+  "ground_truth": {
+    "vulnerable": true,
+    "vuln_class": "auth-bypass",
+    "cvss": 9.9,
+    "reason": "The gateway's node.invoke handler forwards user-controlled params to node hosts without sanitizing internal approval control fields (approved, approvalDecision), allowing an authenticated client to bypass the exec approval workflow and execute arbitrary commands on connected node hosts.",
+    "locations": [
+      {
+        "file": "src/gateway/server-methods/nodes.ts",
+        "function": null
+      }
+    ]
+  }
+}
