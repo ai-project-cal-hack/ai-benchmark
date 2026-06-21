@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-p3w2-64xm-833j",
+  "post_patch_commit": "d2d2be3e4e7915d407e662e5d388d9f8ae8a8f7b",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit identified from v4.5.0 release changelog as d2d2be3e (table: skip paths with unconfigured family in AdjRib.Update). Only 1 non-test source file changed (internal/pkg/table/adj.go). Locations derived from the patch diff: the fix adds nil guards for the adj.table[family] lookup in both Update and UpdateAdjRibOut functions. No sibling files contain the same vulnerability pattern since the AdjRib type is defined solely in adj.go. Vulnerability class null-deref confirmed from CWE-476 and the patch clearly adding nil pointer checks.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-20"
+}
