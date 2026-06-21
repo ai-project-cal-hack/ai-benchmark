@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-x5r6-jr56-89pv",
+  "post_patch_commit": "5ceb17630b459137ade4d4f6aad3c2b764df220b",
+  "noisy_patch": false,
+  "curation_notes": "Patch commit 5ceb17630b identified from v7.0.0 release via git log --grep. 2 non-test source files changed: backup_config_utils.go (adds nil guard for backup.Container before accessing .Devices and .ExpandedDevices in UpdateInstanceConfig) and api_internal.go (adds nil guard for backupConf.Container before accessing .Name in internalImportFromBackup). No sibling files in internal/server/backup/ contain the same unguarded .Container dereference pattern. Vulnerability class null-deref confirmed from CWE-476 and the patch clearly adding nil pointer checks.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
