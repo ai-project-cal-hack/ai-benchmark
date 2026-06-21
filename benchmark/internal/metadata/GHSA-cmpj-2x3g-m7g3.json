@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-cmpj-2x3g-m7g3",
+  "post_patch_commit": "6e27bc78a4696835da6d99d065696690701ba995",
+  "noisy_patch": true,
+  "curation_notes": "Patch commit identified from PR #30 (fix/nef-oauth2-inbound-auth-v2), the re-submission of the original PR #23 (closed without merging). The merge commit 6e27bc7 adds OAuth2 middleware to all NEF service route groups. 9 non-test source files changed, making this a noisy patch. Location derived from the advisory description (which explicitly names server.go as where the OAM route group is mounted without auth middleware) and confirmed by the patch diff, which modifies NewServer in internal/sbi/server.go to add per-group OAuth2 middleware. No sibling files contain the same vulnerability pattern since route group setup is centralized in server.go. Vulnerability class auth-bypass confirmed from CWE-306 (Missing Authentication) and CWE-862 (Missing Authorization), consistent with the patch adding inbound OAuth2 token validation middleware.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
