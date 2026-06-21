@@ -1,0 +1,35 @@
+{
+  "task_id": "ecvebench-appsmith-001",
+  "ghsa_id": "GHSA-9wcp-79g5-5c3c",
+  "codebase": {
+    "repo": "https://github.com/appsmithorg/appsmith",
+    "language": "java",
+    "ecosystem": "maven",
+    "commit": "6adcbaab90bcb927be589ff7078b4216759772a3"
+  },
+  "hints": {
+    "L0": null,
+    "L1": {
+      "area": "User registration and initial instance setup logic"
+    },
+    "L2": {
+      "description": "A Time-of-Check-Time-of-Use (TOCTOU) race condition exists in the initial administrator account creation endpoint. The check for whether any users already exist and the subsequent user creation are performed as separate, non-atomic operations. Concurrent requests can all pass the emptiness check before any user is actually created, allowing multiple callers to be granted administrator privileges. This enables unauthorized persistent administrative access to the instance."
+    },
+    "L3": {
+      "area": "User signup and super user (Instance Administrator) creation logic in the server-side community edition solution layer",
+      "description": "A TOCTOU race condition exists in the super user creation endpoint used during initial instance setup. The endpoint first queries the database to check whether any non-system users exist, and only then proceeds to create the user and grant administrator privileges. Because the check and the creation are not wrapped in an atomic operation, concurrent requests during the initial setup window can all observe an empty database and each proceed to create an administrator account, bypassing the intended single-admin restriction."
+    }
+  },
+  "ground_truth": {
+    "vulnerable": true,
+    "vuln_class": "race-condition",
+    "cvss": 8.1,
+    "reason": "The signupAndLoginSuper() method performs a non-atomic check-then-act sequence: it first queries if any users exist, then creates the admin user. Concurrent requests can all pass the emptiness check before any user is persisted, allowing multiple unauthorized Instance Administrator accounts.",
+    "locations": [
+      {
+        "file": "app/server/appsmith-server/src/main/java/com/appsmith/server/solutions/ce/UserSignupCEImpl.java",
+        "function": "signupAndLoginSuper"
+      }
+    ]
+  }
+}
