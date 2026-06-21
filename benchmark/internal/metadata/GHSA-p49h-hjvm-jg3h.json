@@ -1,0 +1,8 @@
+{
+  "ghsa_id": "GHSA-p49h-hjvm-jg3h",
+  "post_patch_commit": "93b22b846e0269ee9594ff71a72bec02d2bea8fd",
+  "noisy_patch": false,
+  "curation_notes": "Patch adds a bounds check for P mode in ImagingPcxDecode (src/libImaging/PcxDecode.c), mirroring the existing check for mode '1'. Only 1 non-test source file changed. Pre-assigned class buffer-overflow confirmed from CWE-120, advisory description ('PCX P mode buffer overflow'), and the patch diff which adds an overrun guard. No sibling decoders share the same vulnerability pattern \u2014 the missing bounds check is specific to PCX P mode handling.",
+  "dataset_version": "0.1.0",
+  "snapshot_date": "2026-06-21"
+}
